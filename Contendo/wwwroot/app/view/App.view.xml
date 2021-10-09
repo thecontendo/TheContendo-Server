@@ -1,0 +1,39 @@
+﻿<mvc:View
+	xmlns:mvc="sap.ui.core.mvc"
+	controllerName="vcs.controller.App"
+	displayBlock="true"
+    xmlns:f="sap.f"
+	xmlns="sap.m">
+    <VBox height="100%">
+        <f:ShellBar
+            title="{i18n>appTitle}"
+            secondTitle=""
+            homeIcon="app/images/vcs-logo.png"
+            showCopilot="false"
+            showSearch="false"
+            showProductSwitcher="false"
+            homeIconPressed="onHomePressed"
+            avatarPressed="onUserButtonPressed">
+            <f:menu>
+                <Menu>
+                    <MenuItem text="{i18n>home}" icon="sap-icon://home" press="onHomePressed" />
+                    <MenuItem text="{i18n>about}" icon="sap-icon://hint" />
+                </Menu>
+            </f:menu>
+            <f:additionalContent>
+                <MenuButton icon="sap-icon://person-placeholder" type="Ghost" text="{i18n>personProfile}" menuPosition="CenterBottom">
+                    <menu>
+                        <Menu itemSelected="handleMenu">
+                            <items>
+                                <MenuItem text="{i18n>Logout}"
+                                          key="Logout"
+                                          icon="sap-icon://log"/>
+                            </items>
+                        </Menu>
+                    </menu>
+                </MenuButton>
+            </f:additionalContent>
+        </f:ShellBar>
+        <App id="adminApp"/>
+    </VBox>
+</mvc:View>

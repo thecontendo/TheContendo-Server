@@ -1,0 +1,15 @@
+﻿<core:FragmentDefinition
+		xmlns="sap.m"
+		xmlns:core="sap.ui.core">
+    <Menu itemSelected="onUserMenuPressed">
+        <MenuItem text="{i18n>profile}"/>
+        <MenuItem text="{i18n>theme}">
+            <items>
+                <MenuItem text="{i18n>white}" key="sap_fiori_3"/>
+                <MenuItem text="{i18n>blue}" key="sap_belize_plus"/>
+                <MenuItem text="{i18n>dark}" key="sap_fior_3_dark"/>
+            </items>
+        </MenuItem>
+        <MenuItem text="{i18n>signout}"/>
+    </Menu>
+</core:FragmentDefinition>

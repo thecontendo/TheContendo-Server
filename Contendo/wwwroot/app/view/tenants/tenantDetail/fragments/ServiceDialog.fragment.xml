@@ -1,0 +1,58 @@
+<core:FragmentDefinition
+        xmlns="sap.m"
+        xmlns:f="sap.ui.layout.form"
+        xmlns:core="sap.ui.core"
+>
+
+    <Dialog title="{dialogModel>/action} {i18n>service}" class="sapUiSizeCompact" contentWidth="auto" contentHeight="auto" draggable="true">
+        <content>
+
+            <f:SimpleForm
+                id="siteDialogForm"
+			    editable="true"
+			    layout="ResponsiveGridLayout"
+			    title=""
+			    labelSpanXL="4"
+			    labelSpanL="4"
+			    labelSpanM="4"
+			    labelSpanS="12"
+			    adjustLabelSpan="false"
+			    emptySpanXL="0"
+			    emptySpanL="0"
+			    emptySpanM="0"
+			    emptySpanS="0"
+			    columnsXL="3"
+			    columnsL="2"
+			    columnsM="2"
+			    singleContainerFullSize="false" >
+                <f:content>
+
+                    <Label text="{i18n>type}" required="true" />
+                    <ComboBox
+						required="true"
+                        id="serviceTypeInputId"
+                        items="{ path: 'mainModel>/dictionaries/serviceTypes' }"
+                        selectedKey="{dialogModel>/serviceTypeId}">
+                        <core:Item key="{mainModel>id}" text="{mainModel>name}"/>
+                    </ComboBox>
+
+                    <Label text="{i18n>url}"  />
+                    <Input  id="serviceURLInputId" value="{dialogModel>/serviceUrl}" required="true"/>
+
+                    <Label text="{i18n>clientId}" />
+                    <Input value="{dialogModel>/clientId}" required="true"/>
+
+                    <Label text="{i18n>clientSecret}"/>
+                    <Input value="{dialogModel>/clientSecret}" required="true"/>
+
+                </f:content>
+            </f:SimpleForm>
+
+        </content>
+        <buttons>
+            <Button text="{i18n>save}" press="onServiceDialogSave"/>
+            <Button text="{i18n>cancel}" press="onServiceDialogCancel"/>
+        </buttons>
+    </Dialog>
+
+</core:FragmentDefinition>

@@ -1,0 +1,83 @@
+<mvc:View
+        controllerName="vcs.controller.tenants.tenantList.TenantList"
+        xmlns:mvc="sap.ui.core.mvc"
+        xmlns="sap.m"
+        xmlns:f="sap.f"
+        xmlns:fb="sap.ui.comp.filterbar"
+        height="100%">
+    <f:DynamicPage id="rolesPageId"
+                   stickySubheaderProvider="rolesTableId"
+                   class="sapUiNoContentPadding">
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <HBox alignItems="Center">
+                        <Avatar src="sap-icon://account" displaySize="M" displayShape="Square" showBorder="false"
+                                class="sapUiTinyMarginEnd" backgroundColor="Accent1"/>
+                        <VBox>
+                            <Title text="{i18n>tenants}" class="sapUiTinyMarginBottom"/>
+                            <Text text="{i18n>tenantsDesc}"/>
+                        </VBox>
+                    </HBox>
+                </f:heading>
+                <f:actions>
+                    <Button icon="sap-icon://delete" text="Delete" type="Transparent" press="onDeletePress" visible="false"/>
+                    <Button icon="sap-icon://add" text="Add" type="Transparent" press="onAddPress"/>
+                </f:actions>
+                <f:navigationActions>
+                </f:navigationActions>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader pinnable="true">
+                <fb:FilterBar id="filterbar" clear="onClear" search="onSearch" useToolbar="false" showClearOnFB="true"
+                              class="sapUiSmallMarginBottom">
+                    <fb:filterItems>
+                        <fb:FilterItem name="tenantId" label="{i18n>tenantId}">
+                            <fb:control>
+                                <Input value="{mainModel>/filters/systemId}" />
+                            </fb:control>
+                        </fb:FilterItem>
+                        <fb:FilterItem name="tenantName" label="{i18n>tenantName}">
+                            <fb:control>
+                                <Input value="{mainModel>/filters/name}" />
+                            </fb:control>
+                        </fb:FilterItem>
+                    </fb:filterItems>
+                </fb:FilterBar>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <Table id="tenantsTableId"
+                   inset="true"
+                   sticky="HeaderToolbar,ColumnHeaders"
+                   items="{mainModel>/data}"
+                   class="sapFDynamicPageAlignContent"
+                   width="auto"
+                   keyboardMode="Navigation"
+                   mode="MultiSelect"
+                   busy="{mainModel>/busy}">
+                <columns>
+                    <Column width="20%" minScreenWidth="Tablet" demandPopin="true">
+                        <Text text="{i18n>tenantId}"/>
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>tenantName}"/>
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>description}"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Navigation" press="onItemPress">
+                        <cells>
+                            <Text text="{mainModel>systemId}"/>
+                            <Text text="{mainModel>name}"/>
+                            <Text text="{mainModel>description}"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

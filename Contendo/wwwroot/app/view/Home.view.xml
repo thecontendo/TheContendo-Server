@@ -1,0 +1,41 @@
+<mvc:View
+        controllerName="vcs.controller.Home"
+        xmlns:mvc="sap.ui.core.mvc"
+        xmlns:u="sap.uxap"
+        xmlns="sap.m"
+        xmlns:f="sap.f"
+        height="100%"
+        displayBlock="true">
+    <u:ObjectPageLayout upperCaseAnchorBar="false" showHeaderContent="false">
+        <u:sections>
+            <u:ObjectPageSection titleUppercase="false" title="{i18n>general}">
+                <u:subSections>
+                    <u:ObjectPageSubSection title="{i18n>general}" titleUppercase="false">
+                        <u:blocks>
+                            <f:GridContainer>
+                                <f:layout>
+                                    <f:GridContainerSettings rowSize="84px" columnSize="84px" gap="8px"/>
+                                </f:layout>
+                                <f:layoutXS>
+                                    <f:GridContainerSettings rowSize="70px" columnSize="70px" gap="8px"/>
+                                </f:layoutXS>
+
+                                <GenericTile
+                                        header="{i18n>tenants}"
+                                        subheader=""
+                                        press="tenantsPressed">
+                                    <layoutData>
+                                        <f:GridContainerItemLayoutData minRows="2" columns="2"/>
+                                    </layoutData>
+                                    <TileContent>
+                                        <ImageContent src="sap-icon://account"/>
+                                    </TileContent>
+                                </GenericTile>
+                            </f:GridContainer>
+                        </u:blocks>
+                    </u:ObjectPageSubSection>
+                </u:subSections>
+            </u:ObjectPageSection>
+        </u:sections>
+    </u:ObjectPageLayout>
+</mvc:View>

@@ -1,0 +1,28 @@
+﻿<mvc:View
+        controllerName="vcs.controller.Login"
+        xmlns:mvc="sap.ui.core.mvc"
+        xmlns="sap.m"
+        xmlns:f="sap.ui.layout.form">
+    <Page showHeader="false">
+        <content>
+            <VBox justifyContent="Center" alignItems="Center" alignContent="Center" fitContainer="true">
+                <f:SimpleForm
+                    editable="true"
+                    layout="ResponsiveGridLayout"
+                    title="Login To (Vistex Cloud Services)"
+                    class="sapUiSmallMarginEnd">
+                    <f:content>
+                        <Label text="Username"/>
+                        <Input id="username" value="{mainModel>/username}" valueStateText="{i18n>userNameCheck}" required="true" submit="onLogin"/>
+                        <Label text="Password"/>
+                        <Input id="password" value="{mainModel>/password}" valueStateText="{i18n>passwordCheck}" required="true" type="Password" submit="onLogin"/>
+
+                        <Button text="Login" type="Emphasized" press="onLogin" class="sapUiSmallMarginTop"/>
+
+                    </f:content>
+                </f:SimpleForm>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>
+

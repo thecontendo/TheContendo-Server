@@ -1,0 +1,315 @@
+﻿<mvc:View
+        controllerName="vcs.controller.tenants.tenantDetail.TenantDetail"
+        xmlns:mvc="sap.ui.core.mvc"
+        xmlns="sap.uxap"
+        xmlns:m="sap.m"
+        xmlns:f="sap.ui.layout.form"
+        xmlns:core="sap.ui.core"
+>
+    <ObjectPageLayout id="objectPageLayout" enableLazyLoading="true" upperCaseAnchorBar="false" showFooter="true" busy="{mainModel>/busy}">
+        <headerTitle>
+            <ObjectPageDynamicHeaderTitle>
+
+                <expandedHeading>
+                    <m:FlexBox fitContainer="true" alignItems="Center">
+                        <m:Avatar src="sap-icon://account" displaySize="M" displayShape="Square"
+                                  badgeIcon="sap-icon://edit"
+                                  class="sapUiTinyMarginBottom" backgroundColor="Accent1"/>
+
+                        <m:Title text="{mainModel>/data/systemId} ({mainModel>/data/name})" class="sapUiSmallMarginBegin" wrapping="true"/>
+                    </m:FlexBox>
+                </expandedHeading>
+
+                <snappedHeading>
+                    <m:Title text="{mainModel>/header/name}" wrapping="true"/>
+                </snappedHeading>
+
+                <expandedContent>
+                    <m:Text text="{mainModel>/header/name}"/>
+                </expandedContent>
+
+               <!-- <snappedContent>
+                    <m:Text text="{mainModel>/header/name}"/>
+                </snappedContent>-->
+
+                <actions>
+                    <ObjectPageHeaderActionButton id="editButton" press="onEditPress" text="Edit" type="Emphasized" hideText="false"/>
+                    <!--<ObjectPageHeaderActionButton id="deleteButton" press="onDeletePress" text="{i18n>delete}" type="Emphasized" hideText="false"/>-->
+                    <!--<ObjectPageHeaderActionButton visible="{= ${mainModel>/ext/viewMode} === 'display' }" press="onEditPress" text="{i18n>edit}" type="Emphasized" hideText="false"/>-->
+                </actions>
+
+            </ObjectPageDynamicHeaderTitle>
+        </headerTitle>
+
+        <sections>
+            <ObjectPageSection titleUppercase="false" title="{i18n>settings}">
+                <subSections>
+                    <ObjectPageSubSection titleUppercase="false">
+                        <blocks>
+                            <m:VBox alignContent="Stretch"
+                                    alignItems="Stretch"
+                                    justifyContent="Start"
+                                    renderType="Div"
+                                    wrap="NoWrap">
+
+                                <f:SimpleForm
+                                    id="tenantForm"
+			                        editable="true"
+			                        layout="ResponsiveGridLayout"
+			                        title=""
+			                        labelSpanXL="4"
+			                        labelSpanL="4"
+			                        labelSpanM="4"
+			                        labelSpanS="12"
+			                        adjustLabelSpan="false"
+			                        emptySpanXL="0"
+			                        emptySpanL="0"
+			                        emptySpanM="0"
+			                        emptySpanS="0"
+			                        columnsXL="3"
+			                        columnsL="2"
+			                        columnsM="2"
+			                        singleContainerFullSize="false" >
+                                    <f:content>
+
+                                        <core:Title text="{i18n>general}"/>
+
+                                        <m:Label text="{i18n>tenantId}" />
+                                        <m:Input class="transparentBorder" value="{mainModel>/data/systemId}" required="true" editable="false"/>
+
+                                        <m:Label text="{i18n>tenantName}"/>
+                                        <m:Input class="transparentBorder" value="{mainModel>/data/name}" required="true" editable="{= ${mainModel>/ext/viewMode} === 'edit' }"/>
+
+                                        <m:Label text="{i18n>timezone}" />
+                                        <m:ComboBox
+                                                class="transparentBorder"
+                                                items="{globalModel>/localizations/timeZones}"
+                                                selectedKey="{mainModel>/data/timeZoneId}"
+                                                editable="{= ${mainModel>/ext/viewMode} === 'edit' }">
+                                            <core:Item key="{globalModel>id}" text="{globalModel>key}"/>
+                                        </m:ComboBox>
+
+                                        <m:Label text="{i18n>language}" />
+                                        <m:ComboBox
+                                                class="transparentBorder"
+                                                items="{globalModel>/localizations/languages}"
+                                                selectedKey="{mainModel>/data/languageId}"
+                                                editable="{= ${mainModel>/ext/viewMode} === 'edit' }">
+                                            <core:Item key="{globalModel>id}" text="{globalModel>key} - ({globalModel>value})"/>
+                                        </m:ComboBox>
+
+                                        <m:Label text="{i18n>defaultSenderEmail}" />
+                                        <m:Input class="transparentBorder" value="{mainModel>/data/defaultSenderEmail}" editable="{= ${mainModel>/ext/viewMode} === 'edit' }"/>
+
+                                        <m:Label text="{i18n>emailSignature}" />
+                                        <m:Input class="transparentBorder" value="{mainModel>/data/emailSignature}" editable="{= ${mainModel>/ext/viewMode} === 'edit' }"/>
+
+                                        <!--<m:Label text="{i18n>vIBESSiteStatus}"/>
+                                        <m:Switch state="{mainModel>/data/vIBESSiteStatus}"/>-->
+
+
+                                        <core:Title text="{i18n>passwordPolicy}"/>
+
+                                        <m:Label text="{i18n>customPolicy}" />
+                                        <m:Switch  state="{mainModel>/data/customPolicy}"
+                                                   change="onCustomPolicyChange"
+                                                   enabled="{= ${mainModel>/ext/viewMode} === 'edit' }"/>
+
+                                        <m:Label text="{i18n>userPasswordExpiresIn}" />
+                                        <m:ComboBox
+                                                class="transparentBorder"
+                                                items="{passwordPolicyModel>/passwordExpiresIn}"
+                                                selectedKey="{mainModel>/data/passwordPolicy/passwordResetFrequency}"
+                                                required="{= ${mainModel>/ext/viewMode} === 'edit' &amp;&amp; ${mainModel>/data/customPolicy} === true}"
+                                                editable="{= ${mainModel>/ext/viewMode} === 'edit' &amp;&amp; ${mainModel>/data/customPolicy} === true}">
+                                            <core:Item key="{passwordPolicyModel>key}" text="{passwordPolicyModel>text}"/>
+                                        </m:ComboBox>
+
+                                        <m:Label text="{i18n>enforcePasswordHistory}"/>
+                                        <m:Input class="transparentBorder" value="{mainModel>/data/passwordPolicy/previousPasswordsToRemember}"
+                                                 type="Number"
+                                                 required="{= ${mainModel>/ext/viewMode} === 'edit' &amp;&amp; ${mainModel>/data/customPolicy} === true}"
+                                                 editable="{= ${mainModel>/ext/viewMode} === 'edit' &amp;&amp; ${mainModel>/data/customPolicy} === true}"/>
+
+                                        <m:Label text="{i18n>maximumInvalidLoginAttempts}"/>
+                                        <m:ComboBox
+                                                class="transparentBorder"
+                                                items="{passwordPolicyModel>/invalidLoginAttempts}"
+                                                selectedKey="{mainModel>/data/passwordPolicy/accountLockoutFailedLoginAttempts}"
+                                                required="{= ${mainModel>/ext/viewMode} === 'edit' &amp;&amp; ${mainModel>/data/customPolicy} === true}"
+                                                editable="{= ${mainModel>/ext/viewMode} === 'edit' &amp;&amp; ${mainModel>/data/customPolicy} === true}">
+                                            <core:Item key="{passwordPolicyModel>key}" text="{passwordPolicyModel>text}"/>
+                                        </m:ComboBox>
+
+                                        <m:Label text="{i18n>accountLockDuration}"/>
+                                        <m:ComboBox
+                                                class="transparentBorder"
+                                                items="{passwordPolicyModel>/accountLockDuration}"
+                                                selectedKey="{mainModel>/data/passwordPolicy/accountLockoutDurationMinutes}"
+                                                required="{= ${mainModel>/ext/viewMode} === 'edit' &amp;&amp; ${mainModel>/data/customPolicy} === true}"
+                                                editable="{= ${mainModel>/ext/viewMode} === 'edit' &amp;&amp; ${mainModel>/data/customPolicy} === true}">
+                                            <core:Item key="{passwordPolicyModel>key}" text="{passwordPolicyModel>text}"/>
+                                        </m:ComboBox>
+
+                                        <m:Label text="{i18n>minimumOneDayPasswordLifetime}"/>
+                                        <m:Switch
+                                                state="{mainModel>/data/passwordPolicy/requireMinimumOneDayPasswordLifetime}"
+                                                enabled="{= ${mainModel>/ext/viewMode} === 'edit' &amp;&amp; ${mainModel>/data/customPolicy} === true}"/>
+
+                                        <m:Label text="{i18n>allowRememberMe}"/>
+                                        <m:Switch
+                                                state="{mainModel>/data/passwordPolicy/allowRememberMe}"
+                                                enabled="{= ${mainModel>/ext/viewMode} === 'edit' &amp;&amp; ${mainModel>/data/customPolicy} === true}"/>
+                                    </f:content>
+                                </f:SimpleForm>
+                            </m:VBox>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+
+            <ObjectPageSection titleUppercase="false" title="{i18n>sites}">
+                <subSections>
+                    <ObjectPageSubSection titleUppercase="false">
+                        <blocks>
+                            <m:VBox alignContent="Stretch"
+                                    alignItems="Stretch"
+                                    justifyContent="Start"
+                                    renderType="Div"
+                                    wrap="NoWrap">
+                                <m:Table
+                                    id="sitesTableId"
+                                    inset="false"
+                                    sticky="HeaderToolbar,ColumnHeaders"
+                                    items="{mainModel>/data/sites}"
+                                    class="sapFDynamicPageAlignContent"
+                                    width="auto"
+                                    keyboardMode="Navigation"
+                                    mode="{= ${mainModel>/ext/viewMode} === 'edit' ? 'MultiSelect' : 'None' }">
+                                    <m:headerToolbar>
+                                        <m:OverflowToolbar>
+                                            <m:content>
+                                                <m:ToolbarSpacer/>
+                                                <m:Button visible="{= ${mainModel>/ext/viewMode} === 'edit' }" icon="sap-icon://add" type="Transparent" press="onAddSitePress"/>
+                                                <m:Button visible="{= ${mainModel>/ext/viewMode} === 'edit' }" icon="sap-icon://delete" type="Transparent" press="onDeleteSitePress"/>
+                                            </m:content>
+                                        </m:OverflowToolbar>
+                                    </m:headerToolbar>
+                                    <m:columns>
+                                        <m:Column minScreenWidth="Tablet" demandPopin="true">
+                                            <m:Text text="{i18n>type}"/>
+                                        </m:Column>
+                                        <m:Column>
+                                            <m:Text text="{i18n>clientId}"/>
+                                        </m:Column>
+                                        <m:Column minScreenWidth="Tablet" demandPopin="true">
+                                            <m:Text text="{i18n>name}"/>
+                                        </m:Column>
+                                        <m:Column minScreenWidth="Tablet" demandPopin="true">
+                                            <m:Text text="{i18n>url}"/>
+                                        </m:Column>
+                                        <m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="End" width="5%"/>
+
+                                    </m:columns>
+                                    <m:items templateShareable="false">
+                                        <m:ColumnListItem>
+                                            <m:cells>
+                                                <m:ComboBox
+                                                        selectedKey="{mainModel>siteTypeId}"
+                                                        items="{ path: 'mainModel>/dictionaries/siteTypes', templateShareable:false }"
+                                                        class="customInputBorder" editable="false">
+                                                    <m:items templateShareable="false">
+                                                        <core:Item key="{mainModel>id}" text="{mainModel>name}"/>
+                                                    </m:items>
+                                                </m:ComboBox>
+                                                <m:Text text="{mainModel>clientId}"/>
+                                                <m:Text text="{mainModel>name}"/>
+                                                <m:Text text="{mainModel>url}"/>
+                                                <m:Button visible="{= ${mainModel>/ext/viewMode} === 'edit' }" icon="sap-icon://edit" type="Transparent" press="onEditSitePress"/>
+                                            </m:cells>
+                                        </m:ColumnListItem>
+                                    </m:items>
+                                </m:Table>
+                            </m:VBox>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+
+
+            <ObjectPageSection titleUppercase="false" title="{i18n>services}">
+                <subSections>
+                    <ObjectPageSubSection titleUppercase="false">
+                        <blocks>
+                            <m:VBox alignContent="Stretch"
+                                    alignItems="Stretch"
+                                    justifyContent="Start"
+                                    renderType="Div"
+                                    wrap="NoWrap">
+                                <m:Table id="servicesTableId"
+                                         inset="false"
+                                         sticky="HeaderToolbar,ColumnHeaders"
+                                         items="{mainModel>/data/services}"
+                                         class="sapFDynamicPageAlignContent"
+                                         width="auto"
+                                         keyboardMode="Navigation"
+                                         mode="{= ${mainModel>/ext/viewMode} === 'edit' ? 'MultiSelect' : 'None' }">
+                                    <m:headerToolbar>
+                                        <m:OverflowToolbar>
+                                            <m:content>
+                                                <m:ToolbarSpacer/>
+                                                <m:Button visible="{= ${mainModel>/ext/viewMode} === 'edit' }" icon="sap-icon://add" type="Transparent" press="onAddServicePress"/>
+                                                <m:Button visible="{= ${mainModel>/ext/viewMode} === 'edit' }" icon="sap-icon://delete" type="Transparent" press="onDeleteServicePress"/>
+                                            </m:content>
+                                        </m:OverflowToolbar>
+                                    </m:headerToolbar>
+                                    <m:columns>
+                                        <m:Column minScreenWidth="Tablet" demandPopin="true">
+                                            <m:Text text="{i18n>type}"/>
+                                        </m:Column>
+                                        <m:Column>
+                                            <m:Text text="{i18n>url}"/>
+                                        </m:Column>
+                                        <m:Column minScreenWidth="Tablet" demandPopin="true">
+                                            <m:Text text="{i18n>clientId}"/>
+                                        </m:Column>
+                                        <m:Column minScreenWidth="Tablet" demandPopin="true">
+                                            <m:Text text="{i18n>clientSecret}"/>
+                                        </m:Column>
+                                        <m:Column minScreenWidth="Tablet" demandPopin="true" hAlign="End" width="5%"/>
+                                    </m:columns>
+                                    <m:items>
+                                        <m:ColumnListItem>
+                                            <m:cells>
+                                                <m:ComboBox
+                                                        selectedKey="{mainModel>serviceTypeId}"
+                                                        items="{ path: 'mainModel>/dictionaries/serviceTypes', templateShareable:false}"
+                                                        class="customInputBorder" editable="false">
+                                                    <core:Item key="{mainModel>id}" text="{mainModel>name}"/>
+                                                </m:ComboBox>
+                                                <m:Text text="{mainModel>serviceUrl}"/>
+                                                <m:Text text="{mainModel>clientId}"/>
+                                                <m:Text text="{mainModel>clientSecret}"/>
+                                                <m:Button visible="{= ${mainModel>/ext/viewMode} === 'edit' }" icon="sap-icon://edit" type="Transparent" press="onEditServicePress"/>
+                                            </m:cells>
+                                        </m:ColumnListItem>
+                                    </m:items>
+                                </m:Table>
+                            </m:VBox>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+
+        </sections>
+
+        <footer>
+            <m:OverflowToolbar visible="{= ${mainModel>/ext/viewMode} === 'edit' }">
+                <m:ToolbarSpacer/>
+                <m:Button visible="{= ${mainModel>/ext/viewMode} === 'edit' }" text="{i18n>save}" press="onSavePress"/>
+                <m:Button visible="{= ${mainModel>/ext/viewMode} === 'edit' }" text="{i18n>cancel}" press="onCancelPress"/>
+            </m:OverflowToolbar>
+        </footer>
+
+    </ObjectPageLayout>
+</mvc:View>

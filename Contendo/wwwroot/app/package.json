@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "gulp": "*",
+    "gulp-ui5-preload": "*",
+    "gulp-uglify": "*",
+    "gulp-pretty-data": "*",
+    "gulp-if": "*",
+    "gulp-match": "*",
+	"gulp-ignore": "*"
+  }
+}

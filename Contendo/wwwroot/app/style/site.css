@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.paddingTop {
+    padding-top: 12px;
+}
+
+.avatarMargin {
+    margin: 5px;
+}
+
+.sapFShellBar .sapFShellBarHomeIcon {
+    height: 3.1rem;
+}
+
+.mvp-shell-page__nav {
+    display: none !important;
+}
+
+.customInputBorder .sapMInputBaseContentWrapper.sapMInputBaseReadonlyWrapper {
+    border: transparent;
+    background: transparent;
+}
+
+.customInputBorder .sapMInputBaseInner {
+    padding-left: 0px;
+}
+
+.customGridList {
+    height: 300px;
+}
+
+.transparentBorder .sapMInputBaseContentWrapper.sapMInputBaseReadonlyWrapper {
+    border: transparent;
+    background: transparent;
+}
