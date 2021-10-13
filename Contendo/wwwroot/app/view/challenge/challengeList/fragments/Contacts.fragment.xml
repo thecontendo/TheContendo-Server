@@ -1,0 +1,26 @@
+<core:FragmentDefinition
+        xmlns="sap.m"
+        xmlns:f="sap.ui.layout.form"
+        xmlns:core="sap.ui.core"
+>
+
+    <Dialog beforeOpen="openContacts" title="Contacts" class="sapUiSizeCompact" contentWidth="auto"
+            contentHeight="auto" draggable="true">
+        <content>
+            <List items="{contactModel>/items}">
+
+                <!--<StandardListItem title="{requestModel>name}" info="{requestModel>description}" icon="{requestModel>icon}"/>-->
+                <InputListItem label="{contactModel>firstName} {contactModel>lastName}">
+                    <HBox justifyContent="End">
+                        <Button icon="sap-icon://employee" press="onContactPress" />
+                    </HBox>
+                </InputListItem>
+            </List>
+
+        </content>
+        <buttons>
+            <Button text="{i18n>cancel}" press="onRequestDialogCancel"/>
+        </buttons>
+    </Dialog>
+
+</core:FragmentDefinition>

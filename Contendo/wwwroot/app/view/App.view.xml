@@ -21,7 +21,7 @@
                 </Menu>
             </f:menu>
             <f:additionalContent>
-                <MenuButton icon="sap-icon://person-placeholder" type="Ghost" text="{i18n>personProfile}" menuPosition="CenterBottom">
+                <MenuButton icon="sap-icon://person-placeholder" type="Ghost" text="{globalModel>/name}" menuPosition="CenterBottom">
                     <menu>
                         <Menu itemSelected="handleMenu">
                             <items>

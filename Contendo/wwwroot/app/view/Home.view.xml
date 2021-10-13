@@ -21,14 +21,26 @@
                                 </f:layoutXS>
 
                                 <GenericTile
-                                        header="{i18n>tenants}"
+                                        header="Challenges"
                                         subheader=""
-                                        press="tenantsPressed">
+                                        press="challengePressed">
                                     <layoutData>
                                         <f:GridContainerItemLayoutData minRows="2" columns="2"/>
                                     </layoutData>
                                     <TileContent>
-                                        <ImageContent src="sap-icon://account"/>
+                                        <ImageContent src="sap-icon://physical-activity"/>
+                                    </TileContent>
+                                </GenericTile>
+
+                                <GenericTile
+                                        header="Contacts"
+                                        subheader=""
+                                        press="contactsPressed">
+                                    <layoutData>
+                                        <f:GridContainerItemLayoutData minRows="2" columns="2"/>
+                                    </layoutData>
+                                    <TileContent>
+                                        <ImageContent src="sap-icon://employee"/>
                                     </TileContent>
                                 </GenericTile>
                             </f:GridContainer>

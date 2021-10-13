@@ -132,7 +132,7 @@ sap.ui.define([
             },
 
             securityTokenIsAvailable: function () {
-                return sessionStorage.getItem("vcs.token");
+                return localStorage.getItem("vcs.token");
             },
 
             setBusy: function (value, noDelay) {

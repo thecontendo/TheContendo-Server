@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Vistex.Cloud.Services.Models
+namespace Contendo.Models
 {
     public class ServerResponse<T>
     {

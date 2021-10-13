@@ -4,4 +4,9 @@
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Contendo.Db\Contendo.Db.csproj" />
+      <ProjectReference Include="..\Contendo.Models\Contendo.Models.csproj" />
+    </ItemGroup>
+
 </Project>

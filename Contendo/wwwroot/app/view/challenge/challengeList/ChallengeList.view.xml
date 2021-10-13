@@ -1,0 +1,91 @@
+<mvc:View
+        controllerName="vcs.controller.challenge.challengeList.ChallengeList"
+        xmlns:mvc="sap.ui.core.mvc"
+        xmlns="sap.m"
+        xmlns:core="sap.ui.core"
+        xmlns:f="sap.f"
+        xmlns:fb="sap.ui.comp.filterbar"
+        height="100%">
+    <f:DynamicPage id="rolesPageId"
+                   stickySubheaderProvider="rolesTableId"
+                   class="sapUiNoContentPadding">
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <HBox alignItems="Center">
+                        <Avatar src="sap-icon://account" displaySize="M" displayShape="Square" showBorder="false"
+                                class="sapUiTinyMarginEnd" backgroundColor="Accent1"/>
+                        <VBox>
+                            <Title text="Challenger" class="sapUiTinyMarginBottom"/>
+                        </VBox>
+                    </HBox>
+                </f:heading>
+                <f:actions>
+                    <Button class="sapUiTinyMarginEnd" icon="sap-icon://delete" text="Delete" type="Transparent" press="onDeletePress" visible="false"/>
+                    <Button class="sapUiTinyMarginEnd" text="Make a challenge" type="Transparent" press="onCheckRequest"/>
+                    <Button class="sapUiTinyMarginEnd" icon="sap-icon://refresh" type="Transparent" press="loadView"/>
+                </f:actions>
+                <f:navigationActions>
+                </f:navigationActions>
+            </f:DynamicPageTitle>
+        </f:title>
+        <!--<f:header>
+            <f:DynamicPageHeader pinnable="true">
+                <fb:FilterBar id="filterbar" clear="onClear" search="onSearch" useToolbar="false" showClearOnFB="true"
+                              class="sapUiSmallMarginBottom">
+                    <fb:filterItems>
+                        <fb:FilterItem name="tenantId" label="{i18n>tenantId}">
+                            <fb:control>
+                                <Input value="{mainModel>/filters/systemId}" />
+                            </fb:control>
+                        </fb:FilterItem>
+                        <fb:FilterItem name="tenantName" label="{i18n>tenantName}">
+                            <fb:control>
+                                <Input value="{mainModel>/filters/name}" />
+                            </fb:control>
+                        </fb:FilterItem>
+                    </fb:filterItems>
+                </fb:FilterBar>
+            </f:DynamicPageHeader>
+        </f:header>-->
+        <f:content>
+            <Table id="tenantsTableId"
+                   inset="true"
+                   sticky="HeaderToolbar,ColumnHeaders"
+                   items="{mainModel>/data}"
+                   class="sapFDynamicPageAlignContent"
+                   width="auto"
+                   keyboardMode="Navigation"
+                   mode="MultiSelect"
+                   busy="{mainModel>/busy}">
+                <columns>
+                    <Column width="20%" minScreenWidth="Tablet" demandPopin="true">
+                        <Text text="Challenger"/>
+                    </Column>
+                    <Column>
+                        <Text text="Shot"/>
+                    </Column>
+                    <Column>
+                        <Text text="Shot"/>
+                    </Column>
+                    <Column hAlign="Center">
+                        <Text text=""/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Inactive" press="onItemPress">
+                        <cells>
+                            <Text text="{mainModel>challenger/firstName} {mainModel>challenger/lastName}"/>
+                            <Text text="{mainModel>shot/name}"/>
+                            <Image width="12rem" height="6rem" src="app/assets/Workouts/{mainModel>shot/icon}"/>
+                            <VBox justifyContent="Center">
+                                <Button class="sapUiTinyMarginEnd" text="Accept" type="Accept" icon="sap-icon://accept"/>
+                                <Button text="Decline" type="Reject" icon="sap-icon://decline"/>
+                            </VBox>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

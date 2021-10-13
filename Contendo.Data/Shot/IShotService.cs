@@ -14,6 +14,8 @@ namespace Contendo.Data
         
         Task<UiServerResponse<Guid>> Add(ShotDto model);
         
+        Task<UiServerResponse<Guid>> AddShots(List<ShotDto> model);
+        
         Task<UiServerResponse<bool>> Put(ShotDto model);
         
         Task<UiServerResponse<bool>> Delete(Guid id);

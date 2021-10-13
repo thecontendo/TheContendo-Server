@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contendo.Models.SportXs
+namespace Contendo.Models.Shots
 {
-    public class SportX : BaseModel
+    public class Shot : BaseModel
     {
         public string Name { get; set; }
 

@@ -1,24 +1,30 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contendo", "Contendo\Contendo.csproj", "{85FB38E6-8557-4E64-981C-ED7DD6BDBE1C}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31612.314
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contendo", "Contendo\Contendo.csproj", "{85FB38E6-8557-4E64-981C-ED7DD6BDBE1C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{50ADF931-2F9B-45D2-AA40-68C141063D61} = {50ADF931-2F9B-45D2-AA40-68C141063D61}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contendo.Api", "Contendo.Api\Contendo.Api.csproj", "{D0B30078-48A7-4512-91F2-C53FD853476A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contendo.Api", "Contendo.Api\Contendo.Api.csproj", "{D0B30078-48A7-4512-91F2-C53FD853476A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contendo.Models", "Contendo.Models\Contendo.Models.csproj", "{3C340141-A5B1-4CE5-8634-7C1191B25B51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contendo.Models", "Contendo.Models\Contendo.Models.csproj", "{3C340141-A5B1-4CE5-8634-7C1191B25B51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contendo.Data", "Contendo.Data\Contendo.Data.csproj", "{7966B68B-C305-4106-ACAF-23D40F2FE959}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contendo.Data", "Contendo.Data\Contendo.Data.csproj", "{7966B68B-C305-4106-ACAF-23D40F2FE959}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contendo.Extensions", "Contendo.Extensions\Contendo.Extensions.csproj", "{461957E3-4100-4C7E-899D-FFFB4A59DED1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contendo.Extensions", "Contendo.Extensions\Contendo.Extensions.csproj", "{461957E3-4100-4C7E-899D-FFFB4A59DED1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contendo.Db", "Contendo.Db\Contendo.Db.csproj", "{50ADF931-2F9B-45D2-AA40-68C141063D61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contendo.Db", "Contendo.Db\Contendo.Db.csproj", "{50ADF931-2F9B-45D2-AA40-68C141063D61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contendo.Sql", "Contendo.Sql\Contendo.Sql.csproj", "{6FD1B1ED-8A5B-4584-BA58-FAACD9364E07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contendo.Sql", "Contendo.Sql\Contendo.Sql.csproj", "{6FD1B1ED-8A5B-4584-BA58-FAACD9364E07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contendo.Migrations", "Contendo.Migrations\Contendo.Migrations.csproj", "{5268FEB1-D9D9-405D-BDF7-CFA1340999D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contendo.Migrator", "Contendo.Migrator\Contendo.Migrator.csproj", "{5268FEB1-D9D9-405D-BDF7-CFA1340999D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contendo.Sdk", "Contendo.Sdk\Contendo.Sdk.csproj", "{6DEF878C-1896-4BD1-A495-9FE784A9742F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contendo.Sdk", "Contendo.Sdk\Contendo.Sdk.csproj", "{6DEF878C-1896-4BD1-A495-9FE784A9742F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contendo.MessageHub", "Contendo.MessageHub\Contendo.MessageHub.csproj", "{BEB918BA-9896-410E-B06B-0FC70127C801}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contendo.MessageHub", "Contendo.MessageHub\Contendo.MessageHub.csproj", "{BEB918BA-9896-410E-B06B-0FC70127C801}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,5 +72,11 @@ Global
 		{BEB918BA-9896-410E-B06B-0FC70127C801}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEB918BA-9896-410E-B06B-0FC70127C801}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEB918BA-9896-410E-B06B-0FC70127C801}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0380CCB1-8993-4D21-95BC-24418E3694BF}
 	EndGlobalSection
 EndGlobal

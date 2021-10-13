@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Contendo.Models;
-using Contendo.Models.identity.Dto;
+using Contendo.Models.ContactRequests.Dto;
+using Contendo.Models.Identity.Dto;
 
 namespace Contendo.Data.Identity
 {
-    public interface IUserService
+    public interface IUsersService
     {
         Task<UiServerResponse<List<UserDto>>> Get();
         Task<UiServerResponse<UserDto>> Get(Guid id);
+        
+        Task<UiServerResponse<List<UserDto>>> GetContacts();
         
         Task<UiServerResponse<Guid>> Add(UserDto model);
         

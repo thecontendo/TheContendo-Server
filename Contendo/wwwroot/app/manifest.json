@@ -116,6 +116,34 @@
                     "target": [
                         "tenantDetail"
                     ]
+                },
+                {
+                    "pattern": "Contacts",
+                    "name": "contacts",
+                    "target": [
+                        "contacts"
+                    ]
+                },
+                {
+                    "pattern": "contactDetail/{mode}/{id}/:systemId:",
+                    "name": "contactDetail",
+                    "target": [
+                        "contactDetail"
+                    ]
+                },
+                {
+                    "pattern": "Challenges",
+                    "name": "challenge",
+                    "target": [
+                        "challenge"
+                    ]
+                },
+                {
+                    "pattern": "challengeDetail/{mode}/{id}/:systemId:",
+                    "name": "challengeDetail",
+                    "target": [
+                        "challengeDetail"
+                    ]
                 }
             ],
             "targets": {
@@ -130,6 +158,30 @@
                 "home": {
                     "viewName": "Home",
                     "viewId": "HomeView",
+                    "parent": "app",
+                    "controlId": "adminApp",
+                    "controlAggregation": "pages"
+                },
+                "challenge": {
+                    "viewName": "ChallengeList",
+                    "viewId": "ChallengeListView",
+                    "viewPath": "vcs.view.challenge.challengeList",
+                    "parent": "app",
+                    "controlId": "adminApp",
+                    "controlAggregation": "pages"
+                },
+                "contacts": {
+                    "viewName": "ContactList",
+                    "viewId": "ContactListView",
+                    "viewPath": "vcs.view.contacts.contactList",
+                    "parent": "app",
+                    "controlId": "adminApp",
+                    "controlAggregation": "pages"
+                },
+                "contactDetail": {
+                    "viewName": "ContactDetail",
+                    "viewId": "ContactDetailView",
+                    "viewPath": "vcs.view.contacts.contactDetail",
                     "parent": "app",
                     "controlId": "adminApp",
                     "controlAggregation": "pages"

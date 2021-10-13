@@ -31,14 +31,20 @@ namespace Contendo.Db.Migrations
                     b.Property<Guid>("ChallengerId")
                         .HasColumnType("uuid");
 
+                    b.Property<int>("ChallengerStatus")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("DefenderId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("DefenderStatus")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("Duration")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<Guid>("ParticipantId")
-                        .HasColumnType("uuid");
+                    b.Property<int>("Duration")
+                        .HasColumnType("integer");
 
                     b.Property<int>("Points")
                         .HasColumnType("integer");
@@ -46,15 +52,70 @@ namespace Contendo.Db.Migrations
                     b.Property<Guid>("ShotId")
                         .HasColumnType("uuid");
 
+                    b.Property<int>("TimeLimit")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("WinnerId")
+                        .HasColumnType("uuid");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ChallengerId");
 
-                    b.HasIndex("ParticipantId");
+                    b.HasIndex("DefenderId");
 
                     b.HasIndex("ShotId");
 
                     b.ToTable("Challenges");
+                });
+
+            modelBuilder.Entity("Contendo.Models.ContactRequests.ContactRequest", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("ContactId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("ContactRequestStatus")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Uri")
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ContactRequests");
+                });
+
+            modelBuilder.Entity("Contendo.Models.Identity.Address", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("City")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("State")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Address");
                 });
 
             modelBuilder.Entity("Contendo.Models.Identity.User", b =>
@@ -62,6 +123,12 @@ namespace Contendo.Db.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
+
+                    b.Property<Guid?>("AddressId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("AuthType")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Description")
                         .HasColumnType("text");
@@ -74,8 +141,17 @@ namespace Contendo.Db.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("Gender")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Height")
+                        .HasColumnType("text");
+
                     b.Property<string>("LastName")
                         .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Photo")
                         .HasColumnType("text");
 
                     b.Property<int>("Status")
@@ -94,7 +170,12 @@ namespace Contendo.Db.Migrations
                     b.Property<DateTime>("ValidTo")
                         .HasColumnType("timestamp without time zone");
 
+                    b.Property<string>("Weight")
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
 
                     b.HasIndex("Username", "Email")
                         .IsUnique();
@@ -104,12 +185,90 @@ namespace Contendo.Db.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("3b92e3ec-fb30-492c-a75f-e266f4b372ff"),
-                            Email = "abhinav10p@gmail.com",
+                            Id = new Guid("2c5b22e6-8b98-460f-98c9-6227e61b8d66"),
+                            AuthType = 0,
+                            Email = "thecontendo@gmail.com",
                             FirstName = "Super",
+                            Gender = 0,
                             LastName = "Admin",
                             Status = 0,
+                            Title = "Company",
                             Username = "SuperAdmin",
+                            ValidFrom = new DateTime(2020, 12, 31, 23, 0, 0, 0, DateTimeKind.Utc),
+                            ValidTo = new DateTime(9999, 12, 31, 22, 59, 59, 999, DateTimeKind.Utc).AddTicks(9999)
+                        },
+                        new
+                        {
+                            Id = new Guid("88922a62-7304-4234-8b91-6a901cfbf779"),
+                            AuthType = 0,
+                            Description = "Entrepreneur",
+                            Email = "abhinav9p@gmail.com",
+                            FirstName = "Abhinav",
+                            Gender = 0,
+                            LastName = "Parankusham",
+                            Status = 0,
+                            Title = "Mr.",
+                            Username = "pac",
+                            ValidFrom = new DateTime(2020, 12, 31, 23, 0, 0, 0, DateTimeKind.Utc),
+                            ValidTo = new DateTime(9999, 12, 31, 22, 59, 59, 999, DateTimeKind.Utc).AddTicks(9999)
+                        },
+                        new
+                        {
+                            Id = new Guid("b074cf2c-20b2-4bba-870e-f86a11f32bb6"),
+                            AuthType = 0,
+                            Description = "Lead",
+                            Email = "soumya9v@gmail.com",
+                            FirstName = "Soumya",
+                            Gender = 0,
+                            LastName = "Pullakhandam",
+                            Status = 0,
+                            Title = "Ms.",
+                            Username = "soumya",
+                            ValidFrom = new DateTime(2020, 12, 31, 23, 0, 0, 0, DateTimeKind.Utc),
+                            ValidTo = new DateTime(9999, 12, 31, 22, 59, 59, 999, DateTimeKind.Utc).AddTicks(9999)
+                        },
+                        new
+                        {
+                            Id = new Guid("511b1390-e52c-474d-b64e-1073c881b1e6"),
+                            AuthType = 0,
+                            Description = "Guitarist",
+                            Email = "p2@gmail.com",
+                            FirstName = "P2",
+                            Gender = 0,
+                            LastName = "Bhikkumalla",
+                            Status = 0,
+                            Title = "Mr.",
+                            Username = "p2",
+                            ValidFrom = new DateTime(2020, 12, 31, 23, 0, 0, 0, DateTimeKind.Utc),
+                            ValidTo = new DateTime(9999, 12, 31, 22, 59, 59, 999, DateTimeKind.Utc).AddTicks(9999)
+                        },
+                        new
+                        {
+                            Id = new Guid("5fcf796a-3c30-4d25-9110-0a84e9eb85a7"),
+                            AuthType = 0,
+                            Description = "Hello",
+                            Email = "u4@gmail.com",
+                            FirstName = "u4",
+                            Gender = 0,
+                            LastName = "u4",
+                            Status = 0,
+                            Title = "Ms.",
+                            Username = "u4",
+                            ValidFrom = new DateTime(2020, 12, 31, 23, 0, 0, 0, DateTimeKind.Utc),
+                            ValidTo = new DateTime(9999, 12, 31, 22, 59, 59, 999, DateTimeKind.Utc).AddTicks(9999)
+                        },
+                        new
+                        {
+                            Id = new Guid("6d672be4-fa62-4451-8d92-5fc983f61ab6"),
+                            AuthType = 0,
+                            Description = "Hi",
+                            Email = "u5@gmail.com",
+                            FirstName = "u5",
+                            Gender = 0,
+                            LastName = "u5",
+                            Status = 0,
+                            Title = "Mr.",
+                            Username = "u5",
                             ValidFrom = new DateTime(2020, 12, 31, 23, 0, 0, 0, DateTimeKind.Utc),
                             ValidTo = new DateTime(9999, 12, 31, 22, 59, 59, 999, DateTimeKind.Utc).AddTicks(9999)
                         });
@@ -128,6 +287,48 @@ namespace Contendo.Db.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserContacts");
+
+                    b.HasData(
+                        new
+                        {
+                            ContactId = new Guid("b074cf2c-20b2-4bba-870e-f86a11f32bb6"),
+                            UserId = new Guid("88922a62-7304-4234-8b91-6a901cfbf779")
+                        },
+                        new
+                        {
+                            ContactId = new Guid("511b1390-e52c-474d-b64e-1073c881b1e6"),
+                            UserId = new Guid("88922a62-7304-4234-8b91-6a901cfbf779")
+                        },
+                        new
+                        {
+                            ContactId = new Guid("511b1390-e52c-474d-b64e-1073c881b1e6"),
+                            UserId = new Guid("b074cf2c-20b2-4bba-870e-f86a11f32bb6")
+                        },
+                        new
+                        {
+                            ContactId = new Guid("5fcf796a-3c30-4d25-9110-0a84e9eb85a7"),
+                            UserId = new Guid("511b1390-e52c-474d-b64e-1073c881b1e6")
+                        },
+                        new
+                        {
+                            ContactId = new Guid("6d672be4-fa62-4451-8d92-5fc983f61ab6"),
+                            UserId = new Guid("511b1390-e52c-474d-b64e-1073c881b1e6")
+                        },
+                        new
+                        {
+                            ContactId = new Guid("b074cf2c-20b2-4bba-870e-f86a11f32bb6"),
+                            UserId = new Guid("511b1390-e52c-474d-b64e-1073c881b1e6")
+                        },
+                        new
+                        {
+                            ContactId = new Guid("88922a62-7304-4234-8b91-6a901cfbf779"),
+                            UserId = new Guid("5fcf796a-3c30-4d25-9110-0a84e9eb85a7")
+                        },
+                        new
+                        {
+                            ContactId = new Guid("5fcf796a-3c30-4d25-9110-0a84e9eb85a7"),
+                            UserId = new Guid("6d672be4-fa62-4451-8d92-5fc983f61ab6")
+                        });
                 });
 
             modelBuilder.Entity("Contendo.Models.Shots.Shot", b =>
@@ -148,6 +349,44 @@ namespace Contendo.Db.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Shots");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("0a4263c0-4f89-421c-871c-1a811092c316"),
+                            Icon = "pushups.png",
+                            Name = "Push Ups"
+                        },
+                        new
+                        {
+                            Id = new Guid("7141c807-233b-42de-8b18-878f4c5d6f91"),
+                            Icon = "burpees.png",
+                            Name = "Burpees"
+                        },
+                        new
+                        {
+                            Id = new Guid("d0562f7f-bf94-44a3-a3e0-d8d40d419880"),
+                            Icon = "jumpingjacks.png",
+                            Name = "Jumping Jacks"
+                        },
+                        new
+                        {
+                            Id = new Guid("02b8a53a-9b37-439a-88d1-d0363d621508"),
+                            Icon = "classicplank.png",
+                            Name = "Classical Plank"
+                        },
+                        new
+                        {
+                            Id = new Guid("a5bb13cb-adb2-4bb6-b490-77bee49182e4"),
+                            Icon = "straighthandplank.png",
+                            Name = "Straight Hand Plank"
+                        },
+                        new
+                        {
+                            Id = new Guid("27b4717e-bc68-484d-b98b-07387425604c"),
+                            Icon = "sideplank.png",
+                            Name = "Side Plank"
+                        });
                 });
 
             modelBuilder.Entity("Contendo.Models.Challenges.Challenge", b =>
@@ -158,9 +397,9 @@ namespace Contendo.Db.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Contendo.Models.Identity.User", "Participant")
+                    b.HasOne("Contendo.Models.Identity.User", "Defender")
                         .WithMany()
-                        .HasForeignKey("ParticipantId")
+                        .HasForeignKey("DefenderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -172,9 +411,18 @@ namespace Contendo.Db.Migrations
 
                     b.Navigation("Challenger");
 
-                    b.Navigation("Participant");
+                    b.Navigation("Defender");
 
                     b.Navigation("Shot");
+                });
+
+            modelBuilder.Entity("Contendo.Models.Identity.User", b =>
+                {
+                    b.HasOne("Contendo.Models.Identity.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressId");
+
+                    b.Navigation("Address");
                 });
 
             modelBuilder.Entity("Contendo.Models.Identity.UserContact", b =>

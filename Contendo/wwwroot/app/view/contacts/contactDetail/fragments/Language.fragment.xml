@@ -1,0 +1,19 @@
+﻿<core:FragmentDefinition
+        xmlns="sap.m"
+        xmlns:core="sap.ui.core">
+    <SelectDialog
+            contentHeight="auto"
+            contentWidth="25rem"
+            title="{i18n>languages}"
+            items="{mainModel>/dictionaries/languages}"
+            search="_handleValueHelpSearch"
+            confirm="_handleLanguageValueHelpClose"
+            cancel="_handleLanguageValueHelpClose"
+            multiSelect="false">
+        <StandardListItem
+                iconDensityAware="false"
+                iconInset="false"
+                title="{mainModel>key}"
+                description="{mainModel>value}"/>
+    </SelectDialog>
+</core:FragmentDefinition>

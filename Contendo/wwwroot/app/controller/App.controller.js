@@ -2,24 +2,22 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
     'sap/ui/core/Fragment',
-    "vcs/data/services/global/GlobalService"
+    "vcs/data/services/global/GlobalService",
 
 ], function (Controller, JSONModel, Fragment, GlobalService) {
     "use strict";
 
     return Controller.extend("vcs.controller.App", {
         onInit: function () {
+            this.getOwnerComponent().setModel(new JSONModel({name: "Admin", email: "", userId: ""}), "globalModel");
+            if(localStorage.getItem("vcs.name"))
+            {
+                this.getOwnerComponent().getModel("globalModel").setProperty('/name', localStorage.getItem("vcs.name"));
+            }
         },
 
         onAfterRendering: function(){
-       /*     var resourceBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
-            this.getView().byId('logout').setTooltip(resourceBundle.getText('logout'));*/
-            let globalModel = this.getView().getModel("globalModel");
-            if(globalModel && !globalModel.getProperty("/localizations")){
-                GlobalService.getLocalizations().then(response => {
-                    globalModel.setProperty("/localizations", response.data);
-                });
-            }
+        
         },
 
         onHomePressed: function () {
@@ -30,7 +28,10 @@ sap.ui.define([
             let sKey = oEvent.getParameter('item').getKey();
             switch (sKey) {
                 case "Logout":
-                    sessionStorage.removeItem("vcs.token");
+                    localStorage.removeItem("vcs.token");
+                    localStorage.removeItem("vcs.name");
+                    localStorage.removeItem("vcs.email");
+                    localStorage.removeItem("vcs.userId");
                     window.location = "";
                     break;
                 default:

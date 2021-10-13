@@ -12,6 +12,11 @@
 
                 this.getRouter().getRoute("login").attachPatternMatched(this.onRouteMatched, this);
                 this.setModel(new JSONModel({username: "", password: ""}), "mainModel");
+
+                if(localStorage.getItem("vcs.name") && this.getModel("globalModel"))
+                {
+                    this.getModel("globalModel").setProperty('/name', localStorage.getItem("vcs.name"));
+                }
             },
 
             onRouteMatched: function () {
@@ -20,12 +25,25 @@
                 }
             },
 
+            onRegister: function(){
+              this.getObj('regForm').setVisible(true);  
+              this.getObj('logForm').setVisible(false);  
+            },
+
+            onSubmitRegister: function(){
+                
+            },
+
+            onBackLogin: function(){
+                this.getObj('regForm').setVisible(false);
+                this.getObj('logForm').setVisible(true);
+            },
+            
             onLogin: function () {
                 var oData = this.getModel("mainModel").getData();
 
                 this.getObj('username').setValueState(!!oData.username ? 'None' : 'Error');
-                this.getObj('password').setValueState(!!oData.password ? 'None' : 'Error');
-                if (!oData.username || !oData.password) {
+                if (!oData.username) {
                     return;
                 }
 
@@ -33,7 +51,14 @@
 
                 AuthService.getToken(oData).then(response => {
                     if (response.data.token) {
-                        sessionStorage.setItem("vcs.token", response.data.token);
+                        localStorage.setItem("vcs.token", response.data.token);
+                        localStorage.setItem("vcs.name", response.data.name);
+                        localStorage.setItem("vcs.userId", response.data.userId);
+                        localStorage.setItem("vcs.email", response.data.email);
+                        this.getModel("globalModel").setProperty('/name', response.data.name);
+                        this.getModel("globalModel").setProperty('/email', response.data.email);
+                        this.getModel("globalModel").setProperty('/userId', response.data.userId);
+                        
                         this.setBusy(false);
                         this.getRouter().navTo("home");
                     } else {

@@ -18,8 +18,12 @@ sap.ui.define([
                 }
             },
 
-            tenantsPressed: function () {
-                this.getRouter().navTo("tenants");
+            contactsPressed: function () {
+                this.getRouter().navTo("contacts");
+            },
+
+            challengePressed: function () {
+                this.getRouter().navTo("challenge");
             }
 
         });

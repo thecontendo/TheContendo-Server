@@ -1,0 +1,26 @@
+<core:FragmentDefinition
+        xmlns="sap.m"
+        xmlns:f="sap.ui.layout.form"
+        xmlns:core="sap.ui.core"
+>
+
+    <Dialog beforeOpen="openRequests" title="Contact Requests" class="sapUiSizeCompact" contentWidth="auto" contentHeight="auto" draggable="true">
+        <content>
+            <List items="{
+                        path: 'requestModel>/items'
+                    }">
+                <InputListItem label="{requestModel>userName}">
+                    <HBox justifyContent="End">
+                        <Button type="Accept" icon="sap-icon://accept" press="onRespondPress($event, true)" />
+                        <Button type="Reject" icon="sap-icon://decline" press="onRespondPress($event, false)" />
+                    </HBox>
+                </InputListItem>
+            </List>
+
+        </content>
+        <buttons>
+            <Button text="{i18n>cancel}" press="onRequestDialogCancel"/>
+        </buttons>
+    </Dialog>
+
+</core:FragmentDefinition>

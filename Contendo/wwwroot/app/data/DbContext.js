@@ -11,7 +11,7 @@
                 let currentManager = this;
                 return new Promise( function (fnResolve, fnReject) {
 
-                    let token = sessionStorage.getItem( "vcs.token" );
+                    let token = localStorage.getItem( "vcs.token" );
 
                     if (!token && apiUrl.indexOf( "Token" ) === -1) {
                         sap.ui.core.BusyIndicator.hide();
@@ -32,7 +32,7 @@
                         body: method === "GET" ? null : JSON.stringify( payload ?? {} )
                     };
 
-                    let request = new Request( `/api/ui${apiUrl}`, options );
+                    let request = new Request( `/api${apiUrl}`, options );
 
                     fetch( request )
                         .then( response => {
@@ -67,7 +67,7 @@
                     }
                         break;
                     case 401: {
-                        sessionStorage.removeItem(vcs.token);
+                        localStorage.removeItem(vcs.token);
                         controller.getRouter().navTo("login");
                         sap.ui.core.BusyIndicator.hide();
                     }

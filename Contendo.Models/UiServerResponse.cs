@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Vistex.Cloud.Services.Models
+namespace Contendo.Models
 {
     public class UiServerResponse<T>: ServerResponse<T>
     {

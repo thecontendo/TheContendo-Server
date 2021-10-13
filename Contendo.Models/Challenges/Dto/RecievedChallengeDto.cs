@@ -9,14 +9,16 @@ namespace Contendo.Models.Challenges.Dto
     {
         public int Points { get; set; }
         
-        public ChallengeStatus ChallengeStatus { get; set; }
+        public int ChallengeStatus { get; set; }
+        public int ChallengerStatus { get; set; }
+        public int DefenderStatus { get; set; }
         
-        public DateTime Duration { get; set; }
+        public int Duration { get; set; }
         
         public Shot Shot { get; set; }
         
         public Guid ChallengerId { get; set; }
 
-        public User Participant { get; set; }
+        public User Defender { get; set; }
     }
 }

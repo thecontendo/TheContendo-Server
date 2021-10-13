@@ -1,7 +1,11 @@
-﻿namespace Contendo.Api.Controllers
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Contendo.Api.Controllers
 {
-    public class AdminBaseController
-    {
-        
-    }
+    [ApiExplorerSettings(GroupName = "api.admin")]
+    [Route("api/admin/[controller]")]
+    [ApiController]
+    //[Authorize(AuthenticationSchemes = "api.admin")]
+    public class AdminBaseController: ControllerBase {}
 }

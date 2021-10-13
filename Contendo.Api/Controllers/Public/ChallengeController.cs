@@ -1,42 +1,47 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Contendo.Data;
+using Contendo.Models.Challenges.Dto;
 using Contendo.Models.ShotDto.Dto;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Contendo.Api.Controllers.Public
 {
-    public class ShotsController : PublicBaseController
+    public class ChallengeController : PublicBaseController
     {
-        private readonly IShotService _shotsService;
-        private readonly ILogger<ShotsController> _logger;
+        private readonly IChallengeService _challengeService;
+        private readonly ILogger<ChallengeController> _logger;
 
-        public ShotsController(IShotService shotService, ILogger<ShotsController> logger)
+        public ChallengeController(IChallengeService challengeService, ILogger<ChallengeController> logger)
         {
-            _shotsService = shotService;
+            _challengeService = challengeService;
             _logger = logger;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            return Ok(await _shotsService.Get());
+            return Ok(await _challengeService.Get());
         }  
-        
         
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(Guid id)
         {
-            return Ok(await _shotsService.Get(id));
+            return Ok(await _challengeService.Get(id));
         }
+        /*[HttpGet("{id}")]
+        public async Task<IActionResult> GetUserChallenges(Guid id)
+        {
+            return Ok(await _challengeService.Get(id));
+        }*/
         
         [HttpPost]
-        public async Task<IActionResult> Add(ShotDto model)
+        public async Task<IActionResult> Add(ChallengeDto model)
         {
             try
             {
-                return Ok(await _shotsService.Add(model));
+                return Ok(await _challengeService.Add(model));
             }
             catch (Exception ex)
             {
@@ -44,23 +49,11 @@ namespace Contendo.Api.Controllers.Public
                 return BadRequest("");
             }
         }
-        
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(Guid id)
-        {
-            return Ok(await _shotsService.Delete(id));
-        }  
-        
+
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(ShotDto model)
+        public async Task<IActionResult> Put(ChallengeDto model)
         {
-            return Ok(await _shotsService.Put(model));
+            return Ok(await _challengeService.Put(model));
         }
-        
-        /*[HttpPost("GetByFilter")]
-        public async Task<IActionResult> GetByFilter(UserFilterDto model)
-        {
-            return Ok(await _shotsService.GetByFilter(model));
-        }*/
     }
 }

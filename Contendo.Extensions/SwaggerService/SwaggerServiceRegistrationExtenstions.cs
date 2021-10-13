@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Vistex.Cloud.Services.Extensions.SwaggerService.Filters;
+// using Vistex.Cloud.Services.Extensions.SwaggerService.Filters;
 
 namespace Vistex.Cloud.Services.Extensions.SwaggerService
 {
@@ -16,39 +16,14 @@ namespace Vistex.Cloud.Services.Extensions.SwaggerService
         {
             services.AddSwaggerGen(c =>
             {
-
-                c.SwaggerDoc("api.public", new OpenApiInfo { Title = "Public API", Version = "api.public" });
-                c.SwaggerDoc("api.adminUi", new OpenApiInfo { Title = "Admin API", Version = "api.adminUi" });
-                c.SwaggerDoc("api.ui", new OpenApiInfo { Title = "Tenant API", Version = "api.ui" });
-
-                c.AddSecurityDefinition("Public", GetSwaggerClientSecurityScheme(false));
-                c.AddSecurityDefinition("Admin", GetSwaggerClientSecurityScheme(true));
-                c.AddSecurityDefinition("Tenant", GetSwaggerTokenSecurityScheme());
-
+                c.SwaggerDoc("api.public", new OpenApiInfo { Title = "Contendo Public Api", Version = "api.public" });
+                c.SwaggerDoc("api.admin", new OpenApiInfo { Title = "Contendo Admin Api", Version = "api.admin" });
+                c.AddSecurityDefinition("Public", GetSwaggerTokenSecurityScheme());
+                c.AddSecurityDefinition("Admin", GetSwaggerTokenSecurityScheme());
                 c.OperationFilter<AuthorizationOperationFilter>();
             });
         }
-
-        private static OpenApiSecurityScheme GetSwaggerClientSecurityScheme(bool isAdmin)
-        {
-            var path = isAdmin ? "GetAdminToken" : "GetPublicToken";
-            return new OpenApiSecurityScheme
-            {
-                Description = "Oauth2",
-                Name = "Authorization",
-                In = ParameterLocation.Header,
-                Type = SecuritySchemeType.OAuth2,
-                Flows = new OpenApiOAuthFlows()
-                {
-                    ClientCredentials = new OpenApiOAuthFlow()
-                    {
-                        TokenUrl = new Uri($"/api/ui/InternalAuth/{path}", UriKind.Relative)
-                    }
-                }
-            };
-        }
-
-
+        
         private static OpenApiSecurityScheme GetSwaggerTokenSecurityScheme()
         {
             return new OpenApiSecurityScheme
