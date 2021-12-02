@@ -18,5 +18,6 @@ namespace Contendo.Data.Identity
         Task<UiServerResponse<bool>> AcceptRequest(RequestResponse requestResponse);
         
         Task<UiServerResponse<bool>> AcceptUrlRequest(string url);
+        Task<UiServerResponse<bool>> RemoveContact(Guid contactId);
     }
 }

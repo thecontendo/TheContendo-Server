@@ -243,6 +243,55 @@ namespace Contendo.Data.Identity
                 return result;
             }
         }
+        public async Task<UiServerResponse<bool>> RemoveContact(Guid contactId)
+        {
+            var result = new UiServerResponse<bool>(false);
+            try
+            {
+                var value = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+
+                if (value?.Value != null)
+                {
+                    var claims = value.Subject?.Claims.FirstOrDefault(e => e.Type == "jti");
+                    if (claims == null)
+                    {
+                        result.Success = false;
+                        return await Task.FromResult(result);
+                    }
+
+                    var userId = Guid.Parse(claims.Value);
+                    var request = await _db.UserContacts.Where(e => (e.UserId == userId && e.ContactId == contactId)
+                    || e.UserId == contactId && e.ContactId == userId).ToListAsync();
+
+                    if (request == null)
+                    {
+                        result.Success = false;
+                        return await Task.FromResult(result);
+                    }
+
+                    _db.UserContacts.RemoveRange(request);
+                
+                    await _db.SaveChangesAsync();
+                    result.Data = true;
+                    result.AddSuccess("User removed successfully!");
+                    return await Task.FromResult(result);
+                }
+                else
+                {
+                    result.Success = false;
+                    return await Task.FromResult(result);
+                }
+
+               
+            }
+            catch (Exception ex)
+            {
+                result.AddError(ex.Message);
+                _logger.LogInformation($"ContactRequest User : T{ex.Message}");
+                result.Data = false;
+                return result;
+            }
+        }
         
         private static UserDto GetUserDto(User user)
         {

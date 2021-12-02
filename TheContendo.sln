@@ -20,8 +20,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contendo.Db", "Contendo.Db\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contendo.Sql", "Contendo.Sql\Contendo.Sql.csproj", "{6FD1B1ED-8A5B-4584-BA58-FAACD9364E07}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contendo.Migrator", "Contendo.Migrator\Contendo.Migrator.csproj", "{5268FEB1-D9D9-405D-BDF7-CFA1340999D1}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contendo.Sdk", "Contendo.Sdk\Contendo.Sdk.csproj", "{6DEF878C-1896-4BD1-A495-9FE784A9742F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contendo.MessageHub", "Contendo.MessageHub\Contendo.MessageHub.csproj", "{BEB918BA-9896-410E-B06B-0FC70127C801}"
@@ -60,10 +58,6 @@ Global
 		{6FD1B1ED-8A5B-4584-BA58-FAACD9364E07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FD1B1ED-8A5B-4584-BA58-FAACD9364E07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FD1B1ED-8A5B-4584-BA58-FAACD9364E07}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5268FEB1-D9D9-405D-BDF7-CFA1340999D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5268FEB1-D9D9-405D-BDF7-CFA1340999D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5268FEB1-D9D9-405D-BDF7-CFA1340999D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5268FEB1-D9D9-405D-BDF7-CFA1340999D1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6DEF878C-1896-4BD1-A495-9FE784A9742F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6DEF878C-1896-4BD1-A495-9FE784A9742F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DEF878C-1896-4BD1-A495-9FE784A9742F}.Release|Any CPU.ActiveCfg = Release|Any CPU

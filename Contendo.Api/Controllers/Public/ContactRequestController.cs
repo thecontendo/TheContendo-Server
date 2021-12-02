@@ -50,5 +50,11 @@ namespace Contendo.Api.Controllers.Public
         {
             return Ok(await _contactRequest.AcceptUrlRequest(url));
         }
+        
+        [HttpDelete("RemoveContact/{contactId:guid}")]
+        public async Task<IActionResult> RemoveContact(Guid contactId)
+        {
+            return Ok(await _contactRequest.RemoveContact(contactId));
+        }
     }
 }

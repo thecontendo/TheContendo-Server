@@ -86,7 +86,7 @@ namespace Contendo.Api.Controllers
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 result.AddError("Unknown error...");
                 return Ok(result);
